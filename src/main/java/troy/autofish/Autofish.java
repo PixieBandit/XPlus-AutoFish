@@ -190,11 +190,11 @@ public class Autofish {
         for(int yi = -2; yi <= 2; yi++){
             if(!(BlockPos.stream(x - 2, y + yi, z - 2, x + 2, y + yi, z + 2).allMatch((blockPos ->
                     // every block is water
-                        bobber.getEntityWorld().getBlockState(blockPos).getBlock() == Blocks.WATER
+                        bobber.getWorld().getBlockState(blockPos).getBlock() == Blocks.WATER
                     )) || BlockPos.stream(x - 2, y + yi, z - 2, x + 2, y + yi, z + 2).allMatch((blockPos ->
                     // or every block is air or lily pad
-                        bobber.getEntityWorld().getBlockState(blockPos).getBlock() == Blocks.AIR
-                        || bobber.getEntityWorld().getBlockState(blockPos).getBlock() == Blocks.LILY_PAD
+                        bobber.getWorld().getBlockState(blockPos).getBlock() == Blocks.AIR
+                        || bobber.getWorld().getBlockState(blockPos).getBlock() == Blocks.LILY_PAD
             )))){
                 // didn't pass the check
                 if(!alreadyAlertOP){
