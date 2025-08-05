@@ -65,7 +65,7 @@ public class Autofish {
 
         if (client.world != null && client.player != null && modAutofish.getConfig().isAutofishEnabled()) {
 
-           timeMillis = Util.getMeasuringTimeMs(); //update current working time for this tick
+            timeMillis = Util.getMeasuringTimeMs(); //update current working time for this tick
 
             if (isHoldingFishingRod()) {
                 if (client.player.fishHook != null) {
@@ -140,15 +140,16 @@ public class Autofish {
     }
 
     public void catchFish() {
-            if(!modAutofish.getScheduler().isRecastQueued()) { //prevents double reels
-                if (client.player != null) {
-                    detectOpenWater(client.player.fishHook);
-                }
-                //queue actions
-                queueRodSwitch();
-                queueRecast();
-                modAutofish.getScheduler().scheduleAction(ActionType.REEL_IN, modAutofish.getConfig().getReelInDelay(), this::useRod);
+        if(!modAutofish.getScheduler().isRecastQueued()) { //prevents double reels
+            modAutofish.getScheduler().onFishCaught();
+            if (client.player != null) {
+                detectOpenWater(client.player.fishHook);
             }
+            //queue actions
+            queueRodSwitch();
+            queueRecast();
+            modAutofish.getScheduler().scheduleAction(ActionType.REEL_IN, modAutofish.getConfig().getReelInDelay(), this::useRod);
+        }
     }
 
     public void queueRecast() {
@@ -190,11 +191,11 @@ public class Autofish {
         for(int yi = -2; yi <= 2; yi++){
             if(!(BlockPos.stream(x - 2, y + yi, z - 2, x + 2, y + yi, z + 2).allMatch((blockPos ->
                     // every block is water
-                        bobber.getWorld().getBlockState(blockPos).getBlock() == Blocks.WATER
-                    )) || BlockPos.stream(x - 2, y + yi, z - 2, x + 2, y + yi, z + 2).allMatch((blockPos ->
+                    bobber.getWorld().getBlockState(blockPos).getBlock() == Blocks.WATER
+            )) || BlockPos.stream(x - 2, y + yi, z - 2, x + 2, y + yi, z + 2).allMatch((blockPos ->
                     // or every block is air or lily pad
-                        bobber.getWorld().getBlockState(blockPos).getBlock() == Blocks.AIR
-                        || bobber.getWorld().getBlockState(blockPos).getBlock() == Blocks.LILY_PAD
+                    bobber.getWorld().getBlockState(blockPos).getBlock() == Blocks.AIR
+                            || bobber.getWorld().getBlockState(blockPos).getBlock() == Blocks.LILY_PAD
             )))){
                 // didn't pass the check
                 if(!alreadyAlertOP){

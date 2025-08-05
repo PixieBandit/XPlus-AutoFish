@@ -11,10 +11,27 @@ public class Config {
     @Expose boolean persistentMode = false;
     @Expose boolean useSoundDetection = false;
     @Expose boolean forceMPDetection = false;
+    @Expose boolean autoTurnView = false;
+    @Expose float turnAngle = 30.0f;
+    @Expose int turnDruation = 500;
     @Expose long recastDelay = 1500;
     @Expose long randomPercent = 50;
     @Expose long reelInDelay = 1;
     @Expose String clearLagRegex = "\\[ClearLag\\] Removed [0-9]+ Entities!";
+
+
+    public boolean isAutoTurnView() {return autoTurnView;}
+
+    public void setAutoTurnView(boolean autoTurnView) {this.autoTurnView = autoTurnView;}
+
+    public float getTurnAngle() {return turnAngle;}
+
+    public void setTurnAngle(float turnAngle) {this.turnAngle = turnAngle;}
+
+    public int getTurnDruation() {return turnDruation;}
+
+    public void setTurnDruation(int turnDruation) {this.turnDruation = turnDruation;}
+
 
     public boolean isAutofishEnabled() {
         return isAutofishEnabled;
