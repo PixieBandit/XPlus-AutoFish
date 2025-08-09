@@ -85,7 +85,7 @@ public class AutofishScheduler {
         });
 
         //Schedule an action to finish the turn state after the turn duration, without resetting view
-        scheduleAction(ActionType.RESET_VIEW, modAutofish.getConfig().getTurnDruation(), () -> {
+        scheduleAction(ActionType.RESET_VIEW, modAutofish.getConfig().getTurnDuration(), () -> {
             if (isTurning) {
                 isTurning = false;
                 turnLeft = !turnLeft;

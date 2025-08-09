@@ -218,15 +218,15 @@ public class AutofishScreenBuilder {
                 .build();
 
         //Turn Duration Slider
-        AbstractConfigListEntry turnDurationSlider = entryBuilder.startIntSlider(Text.translatable("options.autofish.turn_duration.title"), config.getTurnDruation(), 100, 5000)
-                .setDefaultValue(defaults.getTurnDruation())
+        AbstractConfigListEntry turnDurationSlider = entryBuilder.startIntSlider(Text.translatable("options.autofish.turn_duration.title"), config.getTurnDuration(), 100, 5000)
+                .setDefaultValue(defaults.getTurnDuration())
                 .setTooltip(
                         Text.translatable("options.autofish.turn_duration.tooltip_0"),
                         Text.translatable("options.autofish.turn_duration.tooltip_1")
                 )
                 .setTextGetter(value -> Text.translatable("options.autofish.turn_duration.value", value))
                 .setSaveConsumer(newValue -> {
-                    modAutofish.getConfig().setTurnDruation(newValue);
+                    modAutofish.getConfig().setTurnDuration(newValue);
                 })
                 .build();
 

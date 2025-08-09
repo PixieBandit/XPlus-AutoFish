@@ -13,29 +13,16 @@ public class Config {
     @Expose boolean forceMPDetection = false;
     @Expose boolean autoTurnView = false;
     @Expose float turnAngle = 30.0f;
-    @Expose int turnDruation = 500;
+    @Expose int turnDuration = 500;
     @Expose long recastDelay = 1500;
     @Expose long randomPercent = 50;
     @Expose long reelInDelay = 1;
     @Expose String clearLagRegex = "\\[ClearLag\\] Removed [0-9]+ Entities!";
 
-
-    public boolean isAutoTurnView() {return autoTurnView;}
-
-    public void setAutoTurnView(boolean autoTurnView) {this.autoTurnView = autoTurnView;}
-
-    public float getTurnAngle() {return turnAngle;}
-
-    public void setTurnAngle(float turnAngle) {this.turnAngle = turnAngle;}
-
-    public int getTurnDruation() {return turnDruation;}
-
-    public void setTurnDruation(int turnDruation) {this.turnDruation = turnDruation;}
-
-
     public boolean isAutofishEnabled() {
         return isAutofishEnabled;
     }
+
     public boolean isOpenWaterDetectEnabled() {
         return isOpenWaterDetectEnabled;
     }
@@ -55,6 +42,30 @@ public class Config {
     }
 
     public boolean isForceMPDetection() { return forceMPDetection; }
+
+    public boolean isAutoTurnView() {
+        return autoTurnView;
+    }
+
+    public void setAutoTurnView(boolean autoTurnView) {
+        this.autoTurnView = autoTurnView;
+    }
+
+    public float getTurnAngle() {
+        return turnAngle;
+    }
+
+    public void setTurnAngle(float turnAngle) {
+        this.turnAngle = turnAngle;
+    }
+
+    public int getTurnDuration() {
+        return turnDuration;
+    }
+
+    public void setTurnDuration(int turnDuration) {
+        this.turnDuration = turnDuration;
+    }
 
     public long getRecastDelay() {
         return recastDelay;
