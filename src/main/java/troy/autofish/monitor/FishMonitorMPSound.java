@@ -5,8 +5,10 @@ import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.PlaySoundFromEntityS2CPacket;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import troy.autofish.Autofish;
+import troy.autofish.compat.Mods;
 
 public class FishMonitorMPSound implements FishMonitorMP {
 
@@ -32,7 +34,9 @@ public class FishMonitorMPSound implements FishMonitorMP {
             if (packet instanceof PlaySoundS2CPacket) {
                 PlaySoundS2CPacket soundPacket = (PlaySoundS2CPacket) packet;
                 SoundEvent soundEvent = soundPacket.getSound().value();
-                soundName = soundEvent.id().toString();
+                // getId may return null for unknown sounds (e.g. from other mods)
+                var id = Registries.SOUND_EVENT.getId(soundEvent);
+                soundName = id != null ? id.toString() : "";
                 x = soundPacket.getX();
                 y = soundPacket.getY();
                 z = soundPacket.getZ();
@@ -40,7 +44,13 @@ public class FishMonitorMPSound implements FishMonitorMP {
                 return;
             }
 
-            if (soundName.equalsIgnoreCase("minecraft:entity.fishing_bobber.splash") || soundName.equalsIgnoreCase("entity.fishing_bobber.splash")) {
+            if (soundName.equalsIgnoreCase("minecraft:entity.fishing_bobber.splash")
+                    || soundName.equalsIgnoreCase("entity.fishing_bobber.splash")
+                    || (Mods.STARDEW_FISHING && (
+                        soundName.equalsIgnoreCase("stardew_fishing:fish_bite")
+                        || soundName.equalsIgnoreCase("stardew_fishing:fish_hit")
+                        || soundName.equalsIgnoreCase("stardew_fishing:pull_item")
+                    ))) {
                 if(minecraft.player != null) {
                     FishingBobberEntity hook = minecraft.player.fishHook;
                     if (hook != null) {
