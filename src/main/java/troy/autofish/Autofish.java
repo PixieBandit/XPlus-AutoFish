@@ -229,17 +229,17 @@ public class Autofish {
     public void switchToFirstRod(ClientPlayerEntity player) {
         if(player != null) {
             PlayerInventory inventory = player.getInventory();
-            for (int i = 0; i < inventory.getMainStacks().size(); i++) {
-                ItemStack slot = inventory.getMainStacks().get(i);
+            for (int i = 0; i < inventory.main.size(); i++) {
+                ItemStack slot = inventory.main.get(i);
                 if (slot.getItem() == Items.FISHING_ROD) {
                     if (i < 9) { //hotbar only
                         if (modAutofish.getConfig().isNoBreak()) {
                             if (slot.getDamage() < slot.getMaxDamage() - 1) {
-                                inventory.setSelectedSlot(i);
+                                inventory.selectedSlot = i;
                                 return;
                             }
                         } else {
-                            inventory.setSelectedSlot(i);
+                            inventory.selectedSlot = i;
                             return;
                         }
                     }

@@ -3,7 +3,7 @@
   "id": "autofish",
   "version": "${version}",
   "name": "XPlus Autofish",
-  "description": "Automatically reels in and recasts your fishing rod when you catch a fish. Now for 1.19.4+.",
+  "description": "Automatically reels in and recasts your fishing rod when you catch a fish. Now for 1.21.1+.",
   "authors": [
     "troyboy50",
     "Wudji"
